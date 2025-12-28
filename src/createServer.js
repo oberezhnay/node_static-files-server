@@ -35,12 +35,14 @@ function createServer() {
 
     if (!resolvedPath.startsWith(publicDir)) {
       res.statusCode = 404;
-      res.end('Not Found');
+
+      return res.end('Not Found');
     }
 
     if (!fs.existsSync(resolvedPath)) {
       res.statusCode = 404;
-      res.end('Not Found');
+
+      return res.end('Not Found');
     }
 
     if (req.url.includes('//')) {
