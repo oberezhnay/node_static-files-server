@@ -33,6 +33,16 @@ function createServer() {
 
     const resolvedPath = path.resolve(publicDir + filePath);
 
+    if (!resolvedPath.startsWith(publicDir)) {
+      res.statusCode = 404;
+      res.end('Not Found');
+    }
+
+    if (!fs.existsSync(resolvedPath)) {
+      res.statusCode = 404;
+      res.end('Not Found');
+    }
+
     if (req.url.includes('//')) {
       res.statusCode = 404;
 
